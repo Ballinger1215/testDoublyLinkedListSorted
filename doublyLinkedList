@@ -1,0 +1,125 @@
+package dnode;
+
+/**
+ *
+ * @author Mark Bollinger
+ */
+public class doublyLinkedList {
+    
+    static Dnode root;
+    static Dnode current;
+
+    int firstNode = 0;
+    
+    public void addNode(int Data){
+        
+        Dnode firstNode = new Dnode(Data);
+        
+        if(root == null){
+            
+            root = firstNode;
+            root.prev = null;
+            root.next = null;
+        
+        }else{
+            
+            current = root;
+            
+            firstNode.next = new Dnode(int);
+            firstNode = firstNode.next;
+            firstNode.next = null;
+            
+            //current.nextNode = firstNode;
+        }
+        
+    }
+    
+    public void removeFirst(int Data){
+        
+        Dnode firstNode = new Dnode(Data);
+        
+        if(root == null){
+            
+            firstNode = null;
+            firstNode = firstNode.next;
+        }
+
+    }
+    
+    public void removeLast(int Data){
+        
+        Dnode firstNode = new Dnode(Data);
+        
+        if(root == null){
+            
+            firstNode = null;
+            firstNode = firstNode.next;
+        }
+
+    }
+    
+    public void remove(int Data){
+        if(numberOfEntries > 0){
+            Data(numberOfEntries) = 0;
+            numberOfEntries--; //numberOfEntries = numberOfEntries-1;
+        } else {
+            System.out.println("Item is empty! Add Something!");
+        }
+    }
+    
+    public void clear(int Data){
+        while(numberOfEntries > 0){
+            remove();
+        }
+    }
+    
+    public boolean isEmpty(){
+        boolean result = false;
+        
+        if(numberOfEntries == 0)
+            return true;
+        else
+            return false;
+    }
+    
+    public String toString(){
+     
+        Dnode dNode = current.nextNode;
+        String result = "";
+        
+        while(dNode != null){
+            
+            result = result + "\n" + dNode.data;
+            dNode = dNode.nextNode;
+            
+        }
+        
+        return result;
+        
+    }
+        
+        public void print(){
+            
+            current = root;
+            boolean arrow = true;
+            
+            do{
+               
+                System.out.print(current.data);
+                //System.out.print((arrow) ? "|" + current.data + "|" : " --> " + "|" + current.data + "|" );
+                
+                arrow = false;
+                
+                current = current.nextNode;
+                
+                }while(current != null);
+            
+            }
+    
+     public static void main(String[] args) {
+        
+    }
+
+ 
+    
+}
