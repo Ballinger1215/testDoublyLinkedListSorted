@@ -5,7 +5,6 @@ package dnode;
  * @author Mark Bollinger
  */
 public class Dnode {
-    
     public int data;
     public Dnode prev;
     public Dnode next;
@@ -20,24 +19,26 @@ public class Dnode {
 
     public static void main(String[] args) {
        
-        doublyLinkedList list = new doublyLinkedList();
+        doublyLinkedListSorted list = new doublyLinkedListSorted();
 		
 		list.addNode(1);
                 list.addNode(2);
                 list.addNode(3);
                 list.addNode(4);
-		//list.insertNode(2, 2);
-		//list.deleteNode(3);
-		//list.clear();
-		list.addNode(5);
-		list.addNode(6);
-                list.addNode(7);
-                list.addNode(8);
-                list.addNode(9);
-                list.addNode(10);
-		
-		list.print();
-		System.out.println();
+//		list.insertNode(2, 2);
+//		list.deleteNode(3);
+//		list.clear();
+//                list.isEmpty();
+//                list.removeLast();
+//                list.removeFirst();
+//                list.removeItem();
+//		list.addNode(5);
+//		list.addNode(6);
+//                list.addNode(7);
+//                list.addNode(8);
+//                list.addNode(9);
+//                list.addNode(10);
+//                list.GetNumberOfItems();
 		
 		System.out.println();
     }
