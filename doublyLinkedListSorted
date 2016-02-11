@@ -1,0 +1,232 @@
+package dnode;
+
+/**
+ *
+ * @author Mark Bollinger
+ */
+public class doublyLinkedListSorted {
+    
+    Dnode current;
+    Dnode firstNode = null;
+    Dnode lastNode = null;
+    
+    public String toString(){
+     
+        Dnode current = firstNode;
+        String result = "";
+        
+        while(current != null){
+            
+            result += "\n" + current.toString();
+            current = current.next;
+            
+        }
+        
+        return result;
+        
+    }
+    
+    public void addNode(int item){
+        
+        Dnode newNode = new Dnode(item);
+        
+        // if the node is empty do this
+        if(firstNode == lastNode && firstNode == null){
+            
+            firstNode = newNode;
+            lastNode = firstNode;
+            
+            return;
+        
+        }
+        
+        // if the node is not empty and you have a single entry of data
+        if(firstNode == lastNode && firstNode != null){
+            
+            if(item < firstNode.data){
+                
+                firstNode = newNode;
+                firstNode.next = lastNode;
+                lastNode.prev = firstNode;
+                
+            } else {
+                
+                lastNode = newNode;
+                lastNode.prev = firstNode;
+                firstNode.next = lastNode;
+                
+            }
+            
+            return;
+
+        }
+        
+        if(firstNode != lastNode){
+            
+            Dnode current = firstNode;
+            
+            //go through the list to find a number greater than the item
+            while (current != null){
+                
+                //find the item and put the new data into the list
+                if(current.data > item) {
+                    
+                    //if the item is smaller then the first item in the list it will make a new node at the beginning of the list
+                    if(current == firstNode){
+                        
+                        current.prev = newNode;
+                        newNode.next = current;
+                        firstNode = newNode;
+                        return;
+                        
+                    }
+                    
+                    newNode.next = current;
+                    newNode.prev = current.prev;
+                    current.prev.next = newNode;
+                    current.prev = newNode;
+                    return;
+                    
+                }
+                
+                //continue to search through the list
+                current = current.next;
+                
+            }
+            
+            // went through the whole list and couldn't find a bigger number so it added the node at the end of the list
+            newNode.prev = lastNode;
+            lastNode.next = newNode;
+            lastNode = newNode;
+            return;
+        }
+        
+    }
+    
+        public void clear(){
+            
+        // clear the whole string of linked list by setting the first node and last node to null
+        firstNode = null;
+        lastNode = null;
+
+    }
+    
+    
+    public void removeFirst(){
+        
+        //check to see if the list is empty
+        if(firstNode == null){
+            
+            return;
+            
+        }
+        
+        //if the first and last node are the same
+        if(firstNode == lastNode){
+        
+            firstNode = null;
+            lastNode = null;
+            return;
+            
+        }
+        
+        //if the list is not empty
+        firstNode = firstNode.next;
+        firstNode.prev = null;
+         
+    }
+    
+    public void removeLast(){
+        
+        //check to see if the list is empty
+        if (lastNode == null) {
+            
+            return;
+            
+        }
+
+        //if the first and last node are the same
+        if (firstNode == lastNode) {
+            
+            firstNode = null;
+            lastNode = null;
+            
+            return;
+        }
+        
+        //if the list is not empty then
+        lastNode = lastNode.prev;
+        lastNode.next = null;
+        
+    }
+    
+    public boolean isEmpty(){
+        
+        if (firstNode == null && lastNode == null) { // if first node is equ
+            
+            return true;
+            
+        }else{
+            
+            return false;
+            
+        }
+    }
+    
+    public void removeItem(int item){
+
+        Dnode current = firstNode;
+        // gp through the list to find a number greater than item
+        while (current != null) {
+
+            if(current.data == item){
+
+                //if the first node is equal to the current data then remove the first node
+                if(firstNode == current){
+
+                    removeFirst();
+                    return;
+
+                }
+                
+                //if the last node is equal to the current data then remove the last node
+                if(lastNode == current){
+
+                    removeLast();
+                    return;
+
+                }                
+                
+                //if any other nodes are equal to the current data then remove that node
+                //connect the pointers so you dont lose your linked list of data
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                return;
+
+            }
+
+            current = current.next;
+
+        }
+
+    }
+    
+    public int GetNumberOfItems() {
+        
+        //your current node is the first node to make sure you start from the beginning of the list of data
+        Dnode current = firstNode; 
+        int count = 0;
+        
+        // go through the list to find to count the number of nodes in the linked list
+        while (current != null) {
+            
+            count++;
+            current = current.next;
+            
+        }
+        
+        return count;
+        
+    }
+
+}
